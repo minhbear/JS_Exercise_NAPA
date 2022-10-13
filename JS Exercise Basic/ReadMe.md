@@ -255,7 +255,7 @@
         +) call: func.call([thisArg[, arg1, arg2, ...argN]])
         
         +) apply: func.apply(thisArg [, argsArray])
-           _____________________________________________________________
+           
            | thisArg: context để gán this vào                          |
            | arg1, arg2, .. : các argument riêng biệt được truyền vào  |
            | argArray: mảng các argument                               |
