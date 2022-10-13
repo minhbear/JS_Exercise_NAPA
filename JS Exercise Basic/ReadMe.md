@@ -1,20 +1,25 @@
 ---------------------------JS Exercise Basic----------------------------
 
 1. Phân biệt settimeout vs setinterval
+    
     +) settimeout
         setTimeout(fucntion, milliseconds)
         Thực hiện function sau thời gian đợi nhất định. 
+    
     +) setInterval
         setInterval(function, milliseconds)
         Thực hiện function với thời gian lắp lại.
 
 2. Phân biệt callback, promise, async await
+    
     +) callback: 
         - Là một function được truyền như một argument đến một function khác.
         - Kỹ thuật này cho phép function có thể gọi một function khác.
         - Callback function chạy ngay sau khi function khác kết thúc.
+    
     +) promise  
         - Là một cơ chế bất động bộ, sẽ đưa ra kết quả (success hoặc failure) sau khi thực hiện một đoạn code nào đó trong một khoảng thời gian và sẽ chạy kết quả được đưa ra.
+    
     +) async - await
         - Tương tự như promise, async-await là một cơ chế bất động sẽ chạy kết quả sau khoảng thời gian thực hiện một đoạn code nào đó, nó giúp progammer viết promise một cách dễ dàng hơn
         - async: làm cho function trả về một Promise
@@ -22,25 +27,36 @@
         - await keyword chỉ có thể dụng bên trong một function được gán là async
 
 3. Callback hell là gì?
+    
     +) Callback hell là gọi lại các function lồng nhau được sắp xếp theo cấu trúc kim tử tháp. Mỗi lần gọi function thì phải chờ function trước đó thực hiện, điều này tạo ra cấu trúc kim tử tháp ảnh hưởng đến khả năng đọc cũng như maintain code.
 
 4. Promise hell là gì?
+    
     +) Không giống như callback hell, Promise hell là từ nó gây ra, bản chất của promise là sẽ thực hiện kết quả sau một đoạn code và nếu những promise được đặt lồng nhau thì promise này sẽ phụ thuộc vào promise trước đó và từ đó chính nó tự tạo hell cho mình. 
 
 5. Phân biết let và const? trường hợp object thì như thế nào 
+    
     +) let 
+    
         - là khai báo cho phép chúng ta cập nhật lại giá trị của biến chứ không cho phép chúng ta khai báo lại biết đó.
         - Biến let được khai báo sẽ có scope là block scoped tức là khi khai báo biến tróng scope nào đó với let thì biến đó chỉ có giá trị trong scope đó còn ra ngoài scope thì chúng ta không thể sử dụng biến đó nữa.
+    
     +) const 
+        
         - Là khai báo không cho phép chúng ta cập nhật lại giá trị của biến, với biến thuộc kiểu dữ liệu là primitive (include: string, number, boolean, null, undefined).
         - Đối với biến là kiểu reference(object, function) chúng ta có thể cập nhật giá trị cho từng attribute của nó. 
         - Tương tự với biến let thì biến const khi được khai báo có scope là block scoped.
 
 6. Sự khác nhau giữa forEach, filter, map, every, some, reduce, for
+    
     +) forEach
+        
         - Phương thức forEach() gọi một function thực hiện với từng element trong 1 array.
+    
     +) filter
+        
         - Phương thức filter() tạo một array mới với những elements đã pass qua test được cung cấp bởi một function.
+        
         - filter() không thay đổi array ban đầu.
     +) map
         - Phương thức map() tạo một array mới từ việc gọi function cho tất cả element trong array.
