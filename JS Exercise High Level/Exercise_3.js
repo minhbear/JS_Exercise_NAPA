@@ -33,8 +33,8 @@
  */
 const controller = (req, res) => {
     doA();
-    new Promise((resolve, _) => {
-        resolve(doB());
+    new Promise( async (resolve, _) => {
+        resolve(await doB());
     });
     res.status(200).end();
 }
