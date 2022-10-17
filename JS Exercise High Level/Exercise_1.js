@@ -1,5 +1,10 @@
 setTimeout(() => {
-    new Promise((resolve, reject) => {
-        resolve(() => console.log('Hello event loop'))
-    })
-}, 5000);
+    console.log('hello event loop');
+}, 0);
+
+function runFirst () {
+    const startTime = new Date().getTime();
+    while(new Date().getTime() < startTime + 5000);
+}
+
+runFirst();
