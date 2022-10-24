@@ -20,22 +20,18 @@
 
 //----------------------------------------------------------------------------
 /**
- * Với controller như trên khi request đầu tiên gọi vào sẽ mất thời gian là hơn 11s để có thể nhận được request
- * bởi vì việc xử lý các hàm sync và async của javascript runtime. Đầu tiên javascript sẽ sử dụng call back và thực hiện funcA trong 10s
- * ngay sau đó gặp hàm funcB là một hàm bất động bộ sẽ đưa vào task queue và lại gọi hàm funcB ra xử lý với thời gian 1s cộng thêm thời gian 
- * chuyển qua từ taskqueue qua call stack nên thời gian sẽ hơn 11s. Request cuối cùng phản hồi cũng gần với request đầu tiên và trung bình cả
- * 3 request sẽ mất thời gian là hơn 11s
+ * Với controller như trên khi request đầu tiên gọi vào sẽ mất thời gian là hơn 30s để có thể nhận được request
+ * bởi vì 3 request gọi đến sẽ thực hiện funcA trong 10s mỗi request là mất 30s sau đó request đầu tiên ms xử lý funcB và mất hơn 30s để nhận
  * 
- * Để request đầu tiên thực thi trong khoảng 11s thì chũng ta sẽ sử dụng job queue với promise. Promise.resolve sẽ thực hiện ngay khi funcA kết thúc
- * chúng ta không cần phải đợi khoảng thời gian chuyển qua chuyển lại khi áp dụng event loop
+ * Để request đầu tiên nhận respone trong khoảng 11s thì ta cần thực hiện cả hàm funcA và funcB đều là bất đồng bộ sử dụng promise
  * 
  * controller trên sẽ được sửa thành
  */
-const controller = (req, res) => {
-    doA();
+const controller = async (req, res) => {
     new Promise( async (resolve, _) => {
-        resolve(await doB());
+        resolve(doA());
     });
+    await dob()
     res.status(200).end();
 }
 
