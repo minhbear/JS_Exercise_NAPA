@@ -25,7 +25,7 @@ const controller2 = (req, res) => {
 //--------------------------------------------------------------------------
 /**
  * Với 3 request đồng thời gọi vào controller1 và controller2 thì thời gian nhận được respone
- * của request cuối cùng tại controller1 là hơn 30s còn controller2 sẽ hơn 60s. 
+ * của request cuối cùng tại controller2 là hơn 30s còn controller1 sẽ hơn 60s. 
  *
  * Để cải thiện controller 2 thì nên chuyển cơ chế sang non blocking, thay vì dùng while để chời 10s thì mình dùng
  * setTimeout như thế cả 2 controller sẽ thực thi dưới dạng non blocking và respone của các controller về với các request là như nhau
