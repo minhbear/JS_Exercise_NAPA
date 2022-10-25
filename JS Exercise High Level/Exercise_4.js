@@ -25,12 +25,15 @@ const controller2 = (req, res) => {
 //--------------------------------------------------------------------------
 /**
  * Với 3 request đồng thời gọi vào controller1 và controller2 thì thời gian nhận được respone
- * của request đầu tiên tại controller1 là 10s còn controller2 sẽ hơn 10s. Bởi vì function waitNonBlocking
- * thực thi code không theo tuần tự và áp dụng job queue khi sử sựng promise thì hàm resolve sẽ chạy ngay sau khi hết 10s đợi
- * tuy nhiên với function waitBlocking thực thi code theo trình tự tuần tự lệnh này phải đợi lệnh kia nên thời gian thực thi sẽ hơn 10s 
- * (câu lệnh so sánh new Date().getTime() < startTime + milisecond sẽ phải chạy tuần tự đến khi gắp new Date > starttime + milisencode )
+ * của request cuối cùng tại controller1 là hơn 30s còn controller2 sẽ hơn 60s. 
  *
- * Để có thể cải thiện performance cho controller 2 thì mình nên dùng cơ chế nonblocking để chạy
- * thay vì sử dụng vòng while để kết thúc thời gian  > starttime + milisecnode thì mình dùng setTimeout() vời thời gian wait là 10s và sử dụng 
- * async/await tại controller 2 để lấy được data khi dùng hàm waitBlocking() và resopne cho request đến controller 
+ * Để cải thiện controller 2 thì nên chuyển cơ chế sang non blocking, thay vì dùng while để chời 10s thì mình dùng
+ * setTimeout như thế cả 2 controller sẽ thực thi dưới dạng non blocking và respone của các controller về với các request là như nhau
+ * mà không phải chờ waitblocking chạy xong rồi mới chạy non blocking
  */
+
+//FIX waitBlocking
+const controller2_FIX = (req, res) => {
+    setTimeout(waitBlocking(0), 10000);
+    res.status(200).end();
+}
